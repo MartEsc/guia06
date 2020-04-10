@@ -32,6 +32,14 @@ public class Curso {
 		this.log = new Registro();
 	}
 	
+	public Curso(Integer creditos, Integer creditosRequeridos) {
+		super();
+		this.creditos = creditos;
+		this.creditosRequeridos = creditosRequeridos;
+		this.log = new Registro();
+
+	}
+
 	public int getCreditos() {
 		return creditos;
 	}
