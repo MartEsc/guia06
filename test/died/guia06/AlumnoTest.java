@@ -14,8 +14,8 @@ class AlumnoTest {
 	@BeforeEach
 	public void init() {
 		 a = new Alumno("Juan",123);
-		 c1 = new Curso(5,0);
-		 c2 = new Curso(1,0);
+		 c1 = new Curso(5,0,3);
+		 c2 = new Curso(1,0,3);
 	}
 	@Test
 	void testCreditosObtenidos() {

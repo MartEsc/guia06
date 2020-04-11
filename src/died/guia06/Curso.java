@@ -2,6 +2,7 @@ package died.guia06;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import died.guia06.util.Registro;
@@ -32,11 +33,13 @@ public class Curso {
 		this.log = new Registro();
 	}
 	
-	public Curso(Integer creditos, Integer creditosRequeridos) {
+	public Curso(Integer creditos, Integer creditosRequeridos,Integer cupoMax) {
 		super();
 		this.creditos = creditos;
 		this.creditosRequeridos = creditosRequeridos;
+		this.inscriptos = new ArrayList<Alumno>();
 		this.log = new Registro();
+		this.cupo=cupoMax;
 
 	}
 
@@ -58,12 +61,18 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
+		if(this.inscriptos.size()<this.cupo &&
+		   this.creditosRequeridos <= a.creditosObtenidos() &&
+		   a.getCursando().size()<3) {
 		try{
 			log.registrar(this, "inscribir ",a.toString());
+			a.inscripcionAceptada(this);
+			this.inscriptos.add(a);
+			return true;	
 		}
 		catch(IOException e) {
 			System.out.println("No se pudo inscribir al alumno");
-		}
+		}}
 		return false;
 	}
 	
@@ -74,6 +83,34 @@ public class Curso {
 	public void imprimirInscriptos() {
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			Collections.sort(this.inscriptos);
+			for(Alumno a : this.inscriptos) {
+				System.out.println(a.getNombre());
+			}
+		} catch (IOException e) {
+			System.out.println("No se pudo imprimir el listado de inscriptos");
+		}
+	}
+	
+	public void imprimirInscriptosPorNro() {
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			inscriptos.sort(new ComparaAlumnoLibreta());
+			for(Alumno a : this.inscriptos) {
+				System.out.println(a.getNombre());
+			}
+		} catch (IOException e) {
+			System.out.println("No se pudo imprimir el listado de inscriptos");
+		}
+	}
+	
+	public void imprimirInscriptosPorCreditos() {
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			inscriptos.sort(new ComparaAlumnoCreditos());
+			for(Alumno a : this.inscriptos) {
+				System.out.println(a.getNombre());
+			}
 		} catch (IOException e) {
 			System.out.println("No se pudo imprimir el listado de inscriptos");
 		}
