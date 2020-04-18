@@ -41,7 +41,7 @@ class CursoTest {
 		c1.inscribir(a);
 		c1.inscribir(b);
 		c1.imprimirInscriptos();
-		assertEquals("Cacho" + "\r\n" + "Juan" + "\r\n"  ,outContent.toString());
+		assertEquals("Cacho" +System.getProperty("line.separator")+ "Juan" +System.getProperty("line.separator"),outContent.toString());
 	}
 
 	@Test
@@ -50,7 +50,7 @@ class CursoTest {
 		c1.inscribir(a);
 		c1.inscribir(b);
 		c1.imprimirInscriptosPorNro();
-		assertEquals("Juan" + "\r\n" + "Cacho" + "\r\n" ,outContent.toString());
+		assertEquals("Juan" +System.getProperty("line.separator")+ "Cacho"+System.getProperty("line.separator"),outContent.toString());
 	}
 
 	@Test
@@ -61,7 +61,7 @@ class CursoTest {
 		c2.inscribir(b);
 		b.aprobar(c2);
 		c1.imprimirInscriptosPorNro();
-		assertEquals("Juan" + "\r\n" + "Cacho" + "\r\n" ,outContent.toString());
+		assertEquals("Juan" + System.getProperty("line.separator") + "Cacho" + System.getProperty("line.separator"),outContent.toString());
 	}
 	
 	
