@@ -1,0 +1,69 @@
+package died.guia06;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class CursoTest {
+	
+	
+	final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	
+	private Alumno a;
+	private Alumno b;
+	private Curso c1;
+	private Curso c2;
+	private Curso c3;
+	@BeforeEach
+	public void init() {
+		 a = new Alumno("Juan",1);
+		 b = new Alumno("Cacho",2);
+		 c1 = new Curso(5,0,3);
+		 c2 = new Curso(1,0,3);
+		 c3 = new Curso(1,2,3);
+	}
+	
+	@Test
+	void testInscribir() {
+		c1.inscribir(a);
+		assertTrue(c1.getInscriptos().contains(a));
+		c3.inscribir(b);
+		assertFalse(c3.getInscriptos().contains(b));
+	}
+
+	@Test
+	void testImprimirInscriptos() {
+		System.setOut(new PrintStream(outContent));
+		c1.inscribir(a);
+		c1.inscribir(b);
+		c1.imprimirInscriptos();
+		assertEquals("Cacho" + "\r\n" + "Juan" + "\r\n"  ,outContent.toString());
+	}
+
+	@Test
+	void testImprimirInscriptosPorNro() {
+		System.setOut(new PrintStream(outContent));
+		c1.inscribir(a);
+		c1.inscribir(b);
+		c1.imprimirInscriptosPorNro();
+		assertEquals("Juan" + "\r\n" + "Cacho" + "\r\n" ,outContent.toString());
+	}
+
+	@Test
+	void testImprimirInscriptosPorCreditos() {
+		System.setOut(new PrintStream(outContent));
+		c1.inscribir(a);
+		c1.inscribir(b);
+		c2.inscribir(b);
+		b.aprobar(c2);
+		c1.imprimirInscriptosPorNro();
+		assertEquals("Juan" + "\r\n" + "Cacho" + "\r\n" ,outContent.toString());
+	}
+	
+	
+
+}
