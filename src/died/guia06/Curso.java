@@ -33,18 +33,23 @@ public class Curso {
 		this.log = new Registro();
 	}
 	
-	public Curso(Integer creditos, Integer creditosRequeridos,Integer cupoMax) {
+	public Curso(Integer creditos, Integer creditosRequeridos,Integer cupoMax,String nom) {
 		super();
 		this.creditos = creditos;
 		this.creditosRequeridos = creditosRequeridos;
 		this.inscriptos = new ArrayList<Alumno>();
 		this.log = new Registro();
 		this.cupo=cupoMax;
+		this.nombre=nom;
 
 	}
 
 	public int getCreditos() {
 		return creditos;
+	}
+	
+	public String getNombre() {
+		return nombre;
 	}
 	
 	public List<Alumno> getInscriptos() {
@@ -117,6 +122,10 @@ public class Curso {
 		} catch (IOException e) {
 			System.out.println("No se pudo imprimir el listado de inscriptos");
 		}
+	}
+	
+	public void quitarAlumno(Alumno a) {
+		this.inscriptos.remove(a);
 	}
 
 

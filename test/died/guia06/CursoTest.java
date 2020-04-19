@@ -22,9 +22,9 @@ class CursoTest {
 	public void init() {
 		 a = new Alumno("Juan",1);
 		 b = new Alumno("Cacho",2);
-		 c1 = new Curso(5,0,3);
-		 c2 = new Curso(1,0,3);
-		 c3 = new Curso(1,2,3);
+		 c1 = new Curso(5,0,3,"DIED");
+		 c2 = new Curso(1,0,3,"Gestion de Datos");
+		 c3 = new Curso(1,2,3,"Algebra");
 	}
 	
 	@Test
