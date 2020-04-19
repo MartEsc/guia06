@@ -2,7 +2,7 @@ package died.guia06;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExcepcionNoHayCupo, ExcepcionNoTieneCreditos, ExcepcionCantidadDeCursos, RegistroAuditoriaException {
 		Alumno a1 = new Alumno("Juan",123);
 		Alumno a2 = new Alumno("Pedro",122);
 		Alumno a3 = new Alumno("Martin",120);
@@ -13,10 +13,58 @@ public class App {
 		Curso c4 = new Curso(2,0,3,"Analisis de Sistemas");
 		Curso c5 = new Curso(2,0,3,"Gestion de Datos");
 		
-		c1.inscribir(a1);
-		c1.inscribir(a2);
-		c1.inscribir(a3);
-		c1.inscribir(a4);
+		try{
+			c1.inscribirAlumno(a1);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		try{
+			c1.inscribirAlumno(a2);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		try{
+			c1.inscribirAlumno(a3);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		
+		try{
+			c1.inscribirAlumno(a4);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
 		
 		/*a4 no deberia poder inscribirse por cupo,la impresion por orden
 		alfabetico deberia mostrar "Juan Martin Pedro"*/
@@ -29,18 +77,117 @@ public class App {
 		
 		a1.aprobar(c1);
 		a3.aprobar(c1);
-		c1.inscribir(a4);
-		c2.inscribir(a1);
-		c2.inscribir(a2);
-		c2.inscribir(a3);
+		
+		try{
+			c1.inscribirAlumno(a4);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a4.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a4.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		try{
+			c2.inscribirAlumno(a1);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		try{
+			c2.inscribirAlumno(a2);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a2.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a2.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		
+		try{
+			c2.inscribirAlumno(a3);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a3.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a3.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
 		//a2 no deberia poder inscribirse por creditos,solo juan y martin deberia estar en c2
 		System.out.println("Alumnos del curso c2");
 		c2.imprimirInscriptos();
 		
-		c3.inscribir(a1);
-		c4.inscribir(a1);
-		c5.inscribir(a1);
-		c5.inscribir(a2);
+		try{
+			c3.inscribirAlumno(a1);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		try{
+			c4.inscribirAlumno(a1);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		try{
+			c5.inscribirAlumno(a1);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a1.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a1.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+		
+		try{
+			c5.inscribirAlumno(a2);
+			}
+		catch(ExcepcionNoTieneCreditos e){
+			System.out.println("El alumno: "+a2.getNombre()+" No posee los creditos necesarios para inscribirse");
+		}
+		catch(ExcepcionNoHayCupo e){
+			System.out.println("No hay cupo restante en el curso");
+		}
+		catch(ExcepcionCantidadDeCursos e){
+			System.out.println("El alumno: "+a2.getNombre()+" Ya se encuentra inscrito en el maximo de cursos");
+		}
+		
+	
 		//a1 no deberia poder inscribirse en c5 porque ya esta en 3 cursos
 		System.out.println("Alumnos de c3");
 		c3.imprimirInscriptos();
