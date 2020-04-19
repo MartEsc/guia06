@@ -127,6 +127,34 @@ public class Curso {
 	public void quitarAlumno(Alumno a) {
 		this.inscriptos.remove(a);
 	}
+	
+	public void inscribirAlumno(Alumno a) throws ExcepcionNoHayCupo,ExcepcionNoTieneCreditos,ExcepcionCantidadDeCursos,RegistroAuditoriaException {
+		if(this.inscriptos.size()<this.cupo) {
+			if(this.creditosRequeridos<= a.creditosObtenidos()) {
+				if(a.getCursando().size()<3) {
+					try{
+						log.registrar(this, "inscribir ",a.toString());
+						a.inscripcionAceptada(this);
+						this.inscriptos.add(a);
+							
+					}
+					catch(IOException e) {
+						throw new RegistroAuditoriaException();
+					}
+				}
+				else {
+					throw new ExcepcionCantidadDeCursos();
+				}
+			}
+			else {
+				throw new ExcepcionNoTieneCreditos();
+			}
+		}
+		else {
+			throw new ExcepcionNoHayCupo();
+		}
+			
+	}
 
 
 }
